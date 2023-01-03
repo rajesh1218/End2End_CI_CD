@@ -7,7 +7,7 @@ pipeline {
     }
 
     stages {
-        stage('Build') {
+        stage('Git Checkout') {
             steps {
                 // Get some code from a GitHub repository
                 git branch: 'main', url: 'https://github.com/jallu225/demo-counter-app.git'
