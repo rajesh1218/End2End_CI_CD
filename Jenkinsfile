@@ -1,29 +1,21 @@
 pipeline {
     agent any
+
+    tools {
+        // Install the Maven version configured as "M3" and add it to the path.
+        maven "maven"
+    }
+
     stages {
-        stage ('Git Checkout') {
+        stage('Build') {
             steps {
-                script{
-                    git branch: 'main', url: 'https://github.com/jallu225/demo-counter-app.git'
-                }
-            }
-        }
-        stage ('UNIT Testing') {
-            steps {
-                script{
-                    sh 'mvn test'
-                }
-            }
-        }
-        stage('Integration testing'){
-            
-            steps{
+                // Get some code from a GitHub repository
+                git branch: 'main', url: 'https://github.com/jallu225/demo-counter-app.git'
                 
-                script{
-                    
-                    sh 'mvn verify -DskipUnitTests'
-                }
+                sh "mvn test"
+
             }
+
         }
     }
 }
