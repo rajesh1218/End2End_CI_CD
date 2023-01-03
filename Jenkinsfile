@@ -91,5 +91,16 @@ pipeline {
                 }
             }
         }
+        stage('push image to dockerhub') {
+            steps {
+                script {
+                    withCredentials([string(credentialsId: 'docker_pass', variable: 'dokcer_cred')]) {
+                      sh "docker login -u rajesh1218 -p ${dokcer_cred}"
+                      sh "docker push rajesh1218/$JOB_NAME:v1.$BUILD_ID"
+                      sh "docker push rajesh1218/$JOB_NAME:v1.latest"
+                }
+                }
+            }
+        }
     }
 }
