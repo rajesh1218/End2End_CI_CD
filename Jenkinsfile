@@ -12,10 +12,15 @@ pipeline {
                 // Get some code from a GitHub repository
                 git branch: 'main', url: 'https://github.com/jallu225/demo-counter-app.git'
                 
-                sh "mvn test"
-
             }
 
+        }
+        stage('UNIT Test'){
+            steps {
+                script {
+                     sh "mvn test"
+                }
+            }
         }
     }
 }
