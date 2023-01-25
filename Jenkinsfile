@@ -1,6 +1,6 @@
 node {
     stage('Git Checkout'){
-        git branch: 'main', url: 'https://github.com/rajesh1218/demo-counter-app.git'
+        git branch: 'main', url: 'https://github.com/rajesh1218/End2End_CI_CD.git'
     }
     stage('UNIT Test'){
         sh "mvn test"
