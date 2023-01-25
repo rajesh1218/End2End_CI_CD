@@ -1,36 +1,14 @@
-pipeline {
-    agent my-slave01
-    tools {
-        // Install the Maven version configured as "M3" and add it to the path.
-        maven "maven"
+node {
+    stage('Git Checkout'){
+        git branch: 'main', url: 'https://github.com/rajesh1218/demo-counter-app.git'
     }
-    stages {
-        stage('Git Checkout') {
-            steps {
-                // Get some code from a GitHub repository
-                git branch: 'main', url: 'https://github.com/rajesh1218/End2End_CI_CD.git'   
-            }
-        }
-        stage('UNIT Test'){
-            steps {
-                script {
-                     sh "mvn test"
-                }
-            }
-        }
-        stage('Integration Testing'){
-            steps {
-                script {
-                    sh "mvn verify -DskipUnitTests"
-                }
-            }
-        }
-        stage('Maven Build'){
-            steps {
-                script {
-                    sh "mvn clean install"
-                }
-            }
-        }       
+    stage('UNIT Test'){
+        sh "mvn test"
     }
-}
+    stage('Integration Testing'){
+        sh "mvn verify -DskipUnitTests"
+     }
+     stage('Maven Build'){
+        sh "mvn clean install"
+     }
+} 
