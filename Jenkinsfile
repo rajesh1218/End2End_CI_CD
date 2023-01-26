@@ -16,7 +16,7 @@ node {
            sh "mvn clean package sonar:sonar"
          }
      }
-    stage('Quality Gate Status)'{
+    stage('Quality Gate Status'){
         waitForQualityGate abortPipeline: false, credentialsId: 'sonar-token'
     }
 } 
