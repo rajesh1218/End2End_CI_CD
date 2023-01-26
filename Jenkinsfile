@@ -11,4 +11,9 @@ node {
      stage('Maven Build'){
         sh "mvn clean install"
      }
+    stage('sonar code analysis'){
+        withSonarQubeEnv(credentialsId: 'sonar-token') {
+           sh "mvn clean package sonar:sonar"
+         }
+    }
 } 
